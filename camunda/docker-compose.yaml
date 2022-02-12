@@ -1,0 +1,37 @@
+version: "3.9"
+
+networks:
+  m1-local-network:
+    name: m1-local-network
+
+services:
+  postgres:
+    image: camunda/camunda-bpm-platform:run-7.16.0
+    environment:
+      DB_DRIVER: org.postgresql.Driver
+
+      # Note schema at the end of URL
+      # This will work if you are using Docker Desktop on Windows (and probably also on Mac)
+      DB_URL: jdbc:postgresql://host.docker.internal:5432/postgres?currentSchema=camunda_schema
+      # If you are using different docker implementation, you have to specifi hour machine IP (or name) here
+      # DB_URL: jdbc:postgresql://<your-machine-IP>:5432/postgres?currentSchema=camunda_schema
+
+      DB_USERNAME: camunda_user
+      DB_PASSWORD: camunda_user_password
+
+      # Ensure that database is ready
+      # This will work if you are using Docker Desktop on Windows (and probably also on Mac)
+      WAIT_FOR: host.docker.internal:5432
+      # If you are using different docker implementation, you have to specifi hour machine IP (or name) here
+      # WAIT_FOR: <your-machine-IP>:5432
+      WAIT_FOR_TIMEOUT: 60
+
+      # This one is important - prevents Camunda to initialise database
+      SKIP_DB_CONFIG: true
+
+      SPRING_CAMUNDA_BPM_WEBAPP_INDEX-REDIRECT-ENABLED: true
+
+    ports:
+      - "8080:8080"
+    networks:
+      - m1-local-network
