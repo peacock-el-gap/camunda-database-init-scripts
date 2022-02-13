@@ -5,7 +5,7 @@ networks:
     name: m1-local-network
 
 services:
-  postgres:
+  camunda:
     image: camunda/camunda-bpm-platform:run-7.16.0
     environment:
       DB_DRIVER: org.postgresql.Driver
