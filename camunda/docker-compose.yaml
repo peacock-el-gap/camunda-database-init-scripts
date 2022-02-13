@@ -13,7 +13,7 @@ services:
       # Note schema at the end of URL
       # This will work if you are using Docker Desktop on Windows (and probably also on Mac)
       DB_URL: jdbc:postgresql://host.docker.internal:5432/postgres?currentSchema=camunda_schema
-      # If you are using different docker implementation, you have to specifi hour machine IP (or name) here
+      # If you are using different docker implementation, you have to specify your machine IP (or name) here
       # DB_URL: jdbc:postgresql://<your-machine-IP>:5432/postgres?currentSchema=camunda_schema
 
       DB_USERNAME: camunda_user
@@ -22,7 +22,7 @@ services:
       # Ensure that database is ready
       # This will work if you are using Docker Desktop on Windows (and probably also on Mac)
       WAIT_FOR: host.docker.internal:5432
-      # If you are using different docker implementation, you have to specifi hour machine IP (or name) here
+      # If you are using different docker implementation, you have to specify your machine IP (or name) here
       # WAIT_FOR: <your-machine-IP>:5432
       WAIT_FOR_TIMEOUT: 60
 
